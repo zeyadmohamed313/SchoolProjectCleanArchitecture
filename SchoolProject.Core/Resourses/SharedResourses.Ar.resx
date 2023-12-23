@@ -123,6 +123,9 @@
   <data name="Deleted" xml:space="preserve">
     <value>تم الحذف</value>
   </data>
+  <data name="DepartmentNotExsists" xml:space="preserve">
+    <value>القسم غير موجود</value>
+  </data>
   <data name="IsExist" xml:space="preserve">
     <value>هل هو موجود</value>
   </data>

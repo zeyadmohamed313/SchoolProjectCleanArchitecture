@@ -123,6 +123,9 @@
   <data name="Deleted" xml:space="preserve">
     <value>the Object is Deleted</value>
   </data>
+  <data name="DepartmentNotExsists" xml:space="preserve">
+    <value>DepartmentNotExsists</value>
+  </data>
   <data name="IsExist" xml:space="preserve">
     <value>IsExist</value>
   </data>

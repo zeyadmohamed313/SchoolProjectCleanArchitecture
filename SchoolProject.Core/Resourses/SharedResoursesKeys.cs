@@ -19,5 +19,6 @@ namespace SchoolProject.Core.Resourses
 		public const string Name = "Name";
 		public const string MaxLengthis100 = "MaxLengthis100";
 		public const string IsExist = "IsExist";
+		public const string DepartmentNotExsists = "DepartmentNotExsists";
 	}
 }
