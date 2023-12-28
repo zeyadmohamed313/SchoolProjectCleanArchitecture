@@ -26,7 +26,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 #region Depenendcy Injection
 //builder.Services.AddTransient<IStudentRepository, StudentRepository>();
 builder.Services.AddInfrustructureDependendcies()
-	.AddServiceDependendcies().AddCoreDependencies();
+	.AddServiceDependendcies().AddCoreDependencies().AddServiceRegisteration(builder.Configuration);
 // Can i use it from two differnt places ?
 //ModuleCoreDependencies.AddCoreDependencies(builder.Services);
 #endregion

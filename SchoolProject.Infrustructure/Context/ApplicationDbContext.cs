@@ -8,11 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Abstractions;
 using System.Reflection;
+using Microsoft.AspNetCore.Identity;
+using System.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using SchoolProject.Data.Entites.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace SchoolProject.Infrustructure.Context
 {
-	public class ApplicationDbContext : DbContext
-    {
+	public class ApplicationDbContext : IdentityDbContext< User, IdentityRole<int>,int, IdentityUserClaim<int>, IdentityUserRole<int>, IdentityUserLogin<int>, IdentityRoleClaim<int>,IdentityUserToken<int>>
+	{
 		public ApplicationDbContext()
 		{
 
@@ -31,7 +37,7 @@ namespace SchoolProject.Infrustructure.Context
 			modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
 		}
-
+		public DbSet<User> Users {  get; set; }
 		public DbSet<Student> Students {  get; set; }
 		public DbSet<Department>Departments { get; set; }
 		public DbSet<Subjects>Subjects { get; set; }
