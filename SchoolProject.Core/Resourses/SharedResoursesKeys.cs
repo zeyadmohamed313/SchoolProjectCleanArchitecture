@@ -20,5 +20,9 @@ namespace SchoolProject.Core.Resourses
 		public const string MaxLengthis100 = "MaxLengthis100";
 		public const string IsExist = "IsExist";
 		public const string DepartmentNotExsists = "DepartmentNotExsists";
+		public const string PasswordNotEqualConfirmPass = "PasswordNotEqualConfirmPass";
+		public const string EmailAlreadyExsists = "EmailAlreadyExsists";
+		public const string UserNameIsAlreadyExsists = "UserNameIsAlreadyExsists";
+		public const string FaliedToAddUser = "FaliedToAddUser";
 	}
 }
