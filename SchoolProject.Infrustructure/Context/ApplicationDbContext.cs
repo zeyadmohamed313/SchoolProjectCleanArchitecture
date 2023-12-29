@@ -26,7 +26,7 @@ namespace SchoolProject.Infrustructure.Context
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer("Data Source=DESKTOP-8QKV55J\\SQLEXPRESS;Initial Catalog=SchoolMangment;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+			optionsBuilder.UseSqlServer("Data Source=DESKTOP-8QKV55J\\SQLEXPRESS;Initial Catalog=CollegeManagementSystem;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
 			base.OnConfiguring(optionsBuilder);
 		}
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
