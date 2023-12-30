@@ -159,6 +159,9 @@
   <data name="Update" xml:space="preserve">
     <value>تم التعديل بنجاح </value>
   </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>فشل التحديث</value>
+  </data>
   <data name="UserNameIsAlreadyExsists" xml:space="preserve">
     <value>هذا الاسم موجود مسبقا </value>
   </data>
