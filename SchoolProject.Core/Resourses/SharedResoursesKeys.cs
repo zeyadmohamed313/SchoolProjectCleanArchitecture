@@ -24,5 +24,6 @@ namespace SchoolProject.Core.Resourses
 		public const string EmailAlreadyExsists = "EmailAlreadyExsists";
 		public const string UserNameIsAlreadyExsists = "UserNameIsAlreadyExsists";
 		public const string FaliedToAddUser = "FaliedToAddUser";
+		public const string UpdateFailed = "UpdateFailed";
 	}
 }

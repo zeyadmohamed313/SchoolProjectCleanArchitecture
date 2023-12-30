@@ -32,6 +32,12 @@ namespace SchoolProject.Api.Controllers
 			var response = await Mediator.Send(new GetUserByIdQuery(id));
 			return NewResult(response);
 		}
+		[HttpPut(Router.ApplicationUserRouting.Edit)]
+		public async Task<IActionResult> Edit([FromBody] UpdateUserCommand command)
+		{
+			var response = await Mediator.Send(command);
+			return NewResult(response);
+		}
 	}
 
 	

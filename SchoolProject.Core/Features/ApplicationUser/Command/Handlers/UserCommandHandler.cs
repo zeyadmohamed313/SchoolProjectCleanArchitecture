@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Bases;
 using SchoolProject.Core.Features.ApplicationUser.Command.Models;
+using SchoolProject.Core.Features.ApplicationUser.Query.Results;
 using SchoolProject.Core.Resourses;
 using SchoolProject.Data.Entites.Identity;
 using System;
@@ -14,7 +16,9 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.ApplicationUser.Command.Handlers
 {
-    public class UserCommandHandler : ResponseHandler, IRequestHandler<AddUserCommand, Response<string>>
+    public class UserCommandHandler : ResponseHandler
+        , IRequestHandler<AddUserCommand, Response<string>>,
+        IRequestHandler<UpdateUserCommand,Response<string>>
     {
         #region Feilds
         private readonly IStringLocalizer<SharedResourses> _localizer;
@@ -50,6 +54,24 @@ namespace SchoolProject.Core.Features.ApplicationUser.Command.Handlers
             return Created("");
 
 		}
-        #endregion
-    }
+
+	
+		public async Task<Response<string>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+		{
+			//check if user is exist
+			var oldUser = await _userManager.FindByIdAsync(request.Id.ToString());
+			//if Not Exist notfound
+			if (oldUser == null) return NotFound<string>();
+			//mapping
+			var newUser = _mapper.Map(request, oldUser);
+
+			//update
+			var result = await _userManager.UpdateAsync(newUser);
+			//result is not success
+			if (!result.Succeeded) return BadRequest<string>(_localizer[SharedResoursesKeys.UpdateFailed] +" => "+ result.Errors.FirstOrDefault().Description);
+			//message
+			return Success((string)_localizer[SharedResoursesKeys.Update]);
+		}
+		#endregion
+	}
 }
