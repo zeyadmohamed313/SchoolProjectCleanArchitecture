@@ -129,6 +129,9 @@
   <data name="EmailAlreadyExsists" xml:space="preserve">
     <value>هذا الايميل موجود مسبقا </value>
   </data>
+  <data name="FailedToDeleteUser" xml:space="preserve">
+    <value>فشل حذف المستخدم</value>
+  </data>
   <data name="FaliedToAddUser" xml:space="preserve">
     <value>فشل اضافة المستخدم</value>
   </data>
