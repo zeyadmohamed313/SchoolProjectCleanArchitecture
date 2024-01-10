@@ -129,6 +129,9 @@
   <data name="EmailAlreadyExsists" xml:space="preserve">
     <value>EmailAlreadyExsists</value>
   </data>
+  <data name="FailedToDeleteUser" xml:space="preserve">
+    <value>FailedToDeleteUser</value>
+  </data>
   <data name="FaliedToAddUser" xml:space="preserve">
     <value>FaliedToAddUser</value>
   </data>
