@@ -13,6 +13,7 @@ namespace SchoolProject.Infrustructure.UnitOfwork
 	{
 		IStudentRepository Students { get; }
 		IDepartmentRepository Departments { get; }
+		IRefreshTokenRepository RefreshToken { get; }
 		int Complete();
 	}
 }

@@ -129,6 +129,9 @@
   <data name="EmailAlreadyExsists" xml:space="preserve">
     <value>EmailAlreadyExsists</value>
   </data>
+  <data name="EmailNotConfirmed" xml:space="preserve">
+    <value>EmailNotConfirmed</value>
+  </data>
   <data name="FailedToDeleteUser" xml:space="preserve">
     <value>FailedToDeleteUser</value>
   </data>
@@ -150,6 +153,12 @@
   <data name="NotFound" xml:space="preserve">
     <value>Object IS Not Found</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordNotCorrect" xml:space="preserve">
+    <value>PasswordNotCorrect</value>
+  </data>
   <data name="PasswordNotEqualConfirmPass" xml:space="preserve">
     <value>PasswordNotEqualConfirmPass</value>
   </data>
@@ -165,7 +174,13 @@
   <data name="UpdateFailed" xml:space="preserve">
     <value>UpdateFailed</value>
   </data>
+  <data name="UserName" xml:space="preserve">
+    <value>UserName</value>
+  </data>
   <data name="UserNameIsAlreadyExsists" xml:space="preserve">
     <value>UserNameIsAlreadyExsists</value>
+  </data>
+  <data name="UserNameIsNotExist" xml:space="preserve">
+    <value>UserNameIsNotExist</value>
   </data>
 </root>

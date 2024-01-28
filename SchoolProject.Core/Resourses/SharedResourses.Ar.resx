@@ -129,6 +129,9 @@
   <data name="EmailAlreadyExsists" xml:space="preserve">
     <value>هذا الايميل موجود مسبقا </value>
   </data>
+  <data name="EmailNotConfirmed" xml:space="preserve">
+    <value>  هذا الايميل لم يوثق</value>
+  </data>
   <data name="FailedToDeleteUser" xml:space="preserve">
     <value>فشل حذف المستخدم</value>
   </data>
@@ -150,6 +153,12 @@
   <data name="NotFound" xml:space="preserve">
     <value>هذا المستخدم غير موجود</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>الرقم السري</value>
+  </data>
+  <data name="PasswordNotCorrect" xml:space="preserve">
+    <value>هذا الرقم السري غير صحيح</value>
+  </data>
   <data name="PasswordNotEqualConfirmPass" xml:space="preserve">
     <value>خانة الرقم السري لا تساوي خانة تاكيد الرقم السري</value>
   </data>
@@ -165,7 +174,13 @@
   <data name="UpdateFailed" xml:space="preserve">
     <value>فشل التحديث</value>
   </data>
+  <data name="UserName" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
   <data name="UserNameIsAlreadyExsists" xml:space="preserve">
     <value>هذا الاسم موجود مسبقا </value>
+  </data>
+  <data name="UserNameIsNotExist" xml:space="preserve">
+    <value>اسم المستخدم هذا ليس موجودا</value>
   </data>
 </root>

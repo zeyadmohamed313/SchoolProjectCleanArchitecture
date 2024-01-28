@@ -17,6 +17,8 @@ namespace SchoolProject.Infrustructure
 
 			services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
 			services.AddTransient<IUnitOfWork,UnitOfWork>();
+			services.AddTransient<IRefreshTokenRepository, RefreshTokenRepository>();
+
 			return services;
 		}
 

@@ -16,11 +16,14 @@ namespace SchoolProject.Infrustructure.UnitOfwork
 		private readonly ApplicationDbContext _context;
 		public IStudentRepository Students { get; private set; }
 		public IDepartmentRepository Departments { get; private set; }
+		public IRefreshTokenRepository RefreshToken { get; private set; }
+
 		public UnitOfWork(ApplicationDbContext context)
 		{
 			_context = context;
 			Students = new StudentRepository(_context);
 			Departments = new DepartmentRepository(_context);
+			RefreshToken = new RefreshTokenRepository(_context);
 		}
 		// didnot use cause there is async methods 
 		public int Complete()

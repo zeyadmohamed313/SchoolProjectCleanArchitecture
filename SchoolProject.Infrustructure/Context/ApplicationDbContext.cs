@@ -38,6 +38,7 @@ namespace SchoolProject.Infrustructure.Context
 
 		}
 		public DbSet<User> Users {  get; set; }
+		public DbSet<UserRefreshToken> userRefreshToken {  get; set; }
 		public DbSet<Student> Students {  get; set; }
 		public DbSet<Department>Departments { get; set; }
 		public DbSet<Subjects>Subjects { get; set; }
