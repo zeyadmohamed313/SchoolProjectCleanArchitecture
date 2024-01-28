@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolProject.Infrustructure.Context;
 
@@ -11,9 +12,11 @@ using SchoolProject.Infrustructure.Context;
 namespace SchoolProject.Infrustructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240115210829_uu")]
+    partial class uu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -307,7 +310,7 @@ namespace SchoolProject.Infrustructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("userRefreshToken");
+                    b.ToTable("userRefreshTokens");
                 });
 
             modelBuilder.Entity("SchoolProject.Data.Entites.Ins_Subject", b =>
