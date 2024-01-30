@@ -35,13 +35,13 @@ namespace SchoolProject.Core.Bases
 				Meta = Meta
 			};
 		}
-		public Response<T> Unauthorized<T>()
+		public Response<T> Unauthorized<T>(string massege = null)
 		{
 			return new Response<T>()
 			{
 				StatusCode = System.Net.HttpStatusCode.Unauthorized,
 				Succeeded = true,
-				Message = "UnAuthorized"
+				Message = massege == null ? _localizer[SharedResoursesKeys.UnAuthorized] : massege
 			};
 		}
 		public Response<T> BadRequest<T>(string Message = null)

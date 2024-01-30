@@ -12,7 +12,7 @@ namespace SchoolProject.Api.Controllers
 	public class AuthenticationController : AppControllerBase
 	{
 		[HttpPost(Router.AuthenticationRouting.SignIn)]
-		public async Task<IActionResult> Create([FromForm] SignInCommand command)
+		public async Task<IActionResult> SignIn([FromForm] SignInCommand command)
 		{
 			var response = await Mediator.Send(command);
 			return NewResult(response);
