@@ -53,6 +53,7 @@ namespace SchoolProject.Core.Features.ApplicationUser.Command.Handlers
                 //return BadRequest<string>(_localizer[SharedResoursesKeys.FaliedToAddUser]);
                 return BadRequest<string>(IdentityResult.Errors.FirstOrDefault().Description);
 			}
+			await _userManager.AddToRoleAsync(mapping, "User");
             return Created("");
 
 		}

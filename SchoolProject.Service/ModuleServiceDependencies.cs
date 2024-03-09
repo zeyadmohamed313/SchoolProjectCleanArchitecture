@@ -13,7 +13,7 @@ namespace SchoolProject.Service
 			services.AddTransient<IDepartmentServices, DepartmentServices>();
 			services.AddTransient<IAuthenticationServices, AuthenticationServices>();
 			services.AddSingleton<System.Collections.Concurrent.ConcurrentDictionary<string, SchoolProject.Data.Helper.RefreshToken>>();
-
+			services.AddTransient<IAuthorizationServices, AuthorizationServices>();
 			return services;
 		}
 	}
