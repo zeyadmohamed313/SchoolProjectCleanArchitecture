@@ -44,7 +44,7 @@ namespace SchoolProject.Service.Implementations
 		public async Task <JwtAuthResult> GetJWTToken(User user)
 		{
 			//var JwtToken = GenerateJwtToken(user);
-			var (JwtToken, AccessToken) =  GenerateJwtToken(user);
+			var (JwtToken, AccessToken) = await GenerateJwtToken(user);
 			var refreshToken = GetRefreshToken(user.UserName);
 			var userRefreshToken = new UserRefreshToken
 			{
@@ -68,9 +68,11 @@ namespace SchoolProject.Service.Implementations
 
 		
 
-		private (JwtSecurityToken,string) GenerateJwtToken(User user)
+		private async Task<  (JwtSecurityToken,string)> GenerateJwtToken(User user)
 		{
-			var claims = GetClaims(user);
+			var UserRoles = await _userManager.GetRolesAsync(user);
+
+			var claims = GetClaims(user,UserRoles.ToList());
 			var JwtToken = new JwtSecurityToken(
 				_jwtSettings.Issuer,
 				_jwtSettings.Audience,
@@ -100,7 +102,7 @@ namespace SchoolProject.Service.Implementations
 			RandomNumberGenerate.GetBytes(RandomNumber);
 			return Convert.ToBase64String(RandomNumber);
 		}
-		private List<Claim> GetClaims(User user)
+		private List<Claim> GetClaims(User user ,List<string>Roles)
 		{
 			var claims = new List<Claim>()
 			{
@@ -109,6 +111,10 @@ namespace SchoolProject.Service.Implementations
 				new Claim(nameof(UserClaimsModel.PhoneNumber),user.PhoneNumber),
 				new Claim(nameof(UserClaimsModel.Id),user.Id.ToString()),
 			};
+			// adding roles
+			foreach(var role in Roles )
+			   claims.Add(new Claim(ClaimTypes.Role,role.ToString()));
+
 			return claims;
 		}
 		public async Task<JwtAuthResult> GetRefreshToken(User user, JwtSecurityToken JwtToken,  DateTime? ExpiryDate , string refreshToken)
@@ -119,7 +125,7 @@ namespace SchoolProject.Service.Implementations
 			{
 				throw new SecurityTokenException("User Is Not Found");
 			}
-			var (jwtSecurityToken,NewToken)  = GenerateJwtToken(user); 
+			var (jwtSecurityToken,NewToken)  =await GenerateJwtToken(user); 
 			var response = new JwtAuthResult();
 			response.AccessToken = NewToken;
 			var refreshtokenresult = new RefreshToken();

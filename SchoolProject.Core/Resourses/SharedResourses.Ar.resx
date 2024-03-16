@@ -138,6 +138,9 @@
   <data name="FailedToDeleteUser" xml:space="preserve">
     <value>فشل حذف المستخدم</value>
   </data>
+  <data name="FaliedToAddRole" xml:space="preserve">
+    <value>فشل اضافة الدور</value>
+  </data>
   <data name="FaliedToAddUser" xml:space="preserve">
     <value>فشل اضافة المستخدم</value>
   </data>
@@ -174,6 +177,9 @@
   <data name="Required" xml:space="preserve">
     <value>هذا الحقل مطلوب</value>
   </data>
+  <data name="RoleIsUsed" xml:space="preserve">
+    <value>هذه الصلاحية مستخدمة بالفعل</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>تم العملية بنجاح</value>
   </data>
@@ -188,6 +194,9 @@
   </data>
   <data name="UpdateFailed" xml:space="preserve">
     <value>فشل التحديث</value>
+  </data>
+  <data name="UserIsNotFound" xml:space="preserve">
+    <value>هذا المستخدم غير موجود</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>اسم المستخدم</value>
