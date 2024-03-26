@@ -120,6 +120,9 @@
   <data name="AlgorithmIsWrong" xml:space="preserve">
     <value>AlgorithmIsWrong</value>
   </data>
+  <data name="ConfirmEmailDone" xml:space="preserve">
+    <value>ConfirmEmailDone</value>
+  </data>
   <data name="Created" xml:space="preserve">
     <value>Created Successfully</value>
   </data>
@@ -132,17 +135,47 @@
   <data name="EmailAlreadyExsists" xml:space="preserve">
     <value>EmailAlreadyExsists</value>
   </data>
+  <data name="EmailIsExist" xml:space="preserve">
+    <value>EmailIsExist</value>
+  </data>
   <data name="EmailNotConfirmed" xml:space="preserve">
     <value>EmailNotConfirmed</value>
   </data>
+  <data name="ErrorWhenConfirmEmail" xml:space="preserve">
+    <value>ErrorWhenConfirmEmail</value>
+  </data>
+  <data name="FaildToAddUser" xml:space="preserve">
+    <value>FaildToAddUser</value>
+  </data>
+  <data name="FailedToAddNewClaims" xml:space="preserve">
+    <value>FailedToAddNewClaims</value>
+  </data>
+  <data name="FailedToAddNewRoles" xml:space="preserve">
+    <value>FailedToAddNewRoles</value>
+  </data>
   <data name="FailedToDeleteUser" xml:space="preserve">
     <value>FailedToDeleteUser</value>
+  </data>
+  <data name="FailedToRemoveOldClaims" xml:space="preserve">
+    <value>FailedToRemoveOldClaims</value>
+  </data>
+  <data name="FailedToRemoveOldRoles" xml:space="preserve">
+    <value>FailedToRemoveOldRoles</value>
+  </data>
+  <data name="FailedToUpdateClaims" xml:space="preserve">
+    <value>FailedToUpdateClaims</value>
+  </data>
+  <data name="FailedToUpdateUserRoles" xml:space="preserve">
+    <value>FailedToUpdateUserRoles</value>
   </data>
   <data name="FaliedToAddRole" xml:space="preserve">
     <value>FaliedToAddRole</value>
   </data>
   <data name="FaliedToAddUser" xml:space="preserve">
     <value>FaliedToAddUser</value>
+  </data>
+  <data name="InvaildCode" xml:space="preserve">
+    <value>InvaildCode</value>
   </data>
   <data name="IsExist" xml:space="preserve">
     <value>IsExist</value>
@@ -177,11 +210,20 @@
   <data name="RoleIsUsed" xml:space="preserve">
     <value>RoleIsUsed</value>
   </data>
+  <data name="SendEmailFailed" xml:space="preserve">
+    <value>SendEmailFailed</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>Operation Successfully</value>
   </data>
   <data name="TokenIsNotExpired" xml:space="preserve">
     <value>TokenIsNotExpired</value>
+  </data>
+  <data name="TryAgainInAnotherTime" xml:space="preserve">
+    <value>TryAgainInAnotherTime</value>
+  </data>
+  <data name="TryToRegisterAgain" xml:space="preserve">
+    <value>TryToRegisterAgain</value>
   </data>
   <data name="UnAuthorized" xml:space="preserve">
     <value>UnAuthorized</value>
@@ -200,6 +242,9 @@
   </data>
   <data name="UserNameIsAlreadyExsists" xml:space="preserve">
     <value>UserNameIsAlreadyExsists</value>
+  </data>
+  <data name="UserNameIsExist" xml:space="preserve">
+    <value>UserNameIsExist</value>
   </data>
   <data name="UserNameIsNotExist" xml:space="preserve">
     <value>UserNameIsNotExist</value>

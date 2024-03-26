@@ -17,6 +17,7 @@ namespace SchoolProject.Infrustructure.UnitOfwork
 		public IStudentRepository Students { get; private set; }
 		public IDepartmentRepository Departments { get; private set; }
 		public IRefreshTokenRepository RefreshToken { get; private set; }
+		public IInstructorRepository Instructors { get; private set; }
 
 		public UnitOfWork(ApplicationDbContext context)
 		{
@@ -24,6 +25,7 @@ namespace SchoolProject.Infrustructure.UnitOfwork
 			Students = new StudentRepository(_context);
 			Departments = new DepartmentRepository(_context);
 			RefreshToken = new RefreshTokenRepository(_context);
+			Instructors = new InstructorRepository(_context);
 		}
 		// didnot use cause there is async methods 
 		public int Complete()

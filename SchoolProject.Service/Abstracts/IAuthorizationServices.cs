@@ -1,5 +1,8 @@
-﻿using SchoolProject.Data.DTOs;
+﻿using SchoolProject.Data.Entites;
 using SchoolProject.Data.Entites.Identity;
+using SchoolProject.Data.Helper;
+using SchoolProject.Data.Requests;
+using SchoolProject.Data.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Service.Abstracts
 {
-	public interface IAuthorizationServices
+    public interface IAuthorizationServices
 	{
 		Task<string> AddRoleAsync(string roleName);
 		Task<bool> IsRoleExstists(string roleName);
@@ -17,5 +20,10 @@ namespace SchoolProject.Service.Abstracts
 		Task<List<Role>> GetRolesAsync();
 	    Task<Role> GetRoleById(int id);
 		Task<ManageUserRolesResult> ManageUserRolesData(User user);
+        Task<string> UpdateUserRoles(UpdateRolesRequest request);
+		Task<ManageUserClaimsResults> ManageUserClaimData(User user);
+		Task<string> UpdateUserClaims(UpdateUserClaimsRequests request);
+
+
     }
 }

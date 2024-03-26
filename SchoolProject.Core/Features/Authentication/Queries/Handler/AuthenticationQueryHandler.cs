@@ -15,7 +15,9 @@ using System.Threading.Tasks;
 namespace SchoolProject.Core.Features.Authentication.Queries.Handler
 {
 	public class AuthenticationQueryHandler : ResponseHandler,
-		IRequestHandler<AuthorizeUserQuery, Response<string>>
+		IRequestHandler<AuthorizeUserQuery, Response<string>>,
+		IRequestHandler<ConfirmEmailQuery,Response<string>>,
+		IRequestHandler<ConfirmResetPasswordQuery,Response<string>>
 	{
 		#region Fields
 		private readonly IStringLocalizer<SharedResourses> _localizer;
@@ -52,6 +54,26 @@ namespace SchoolProject.Core.Features.Authentication.Queries.Handler
 			}
 			return BadRequest<string>("Expired");
 		}
-		#endregion
-	}
+
+        public async Task<Response<string>> Handle(ConfirmEmailQuery request, CancellationToken cancellationToken)
+        {
+            var confirmEmail = await _authenticationServices.ConfirmEmail(request.UserId, request.Code);
+            if (confirmEmail == "ErrorWhenConfirmEmail")
+                return BadRequest<string>(_localizer[SharedResoursesKeys.ErrorWhenConfirmEmail]);
+            return Success<string>(_localizer[SharedResoursesKeys.ConfirmEmailDone]);
+        }
+
+        public async Task<Response<string>> Handle(ConfirmResetPasswordQuery request, CancellationToken cancellationToken)
+        {
+            var result = await _authenticationServices.ConfirmResetPassword(request.Code, request.Email);
+            switch (result)
+            {
+                case "UserNotFound": return BadRequest<string>(_localizer[SharedResoursesKeys.UserIsNotFound]);
+                case "Failed": return BadRequest<string>(_localizer[SharedResoursesKeys.InvaildCode]);
+                case "Success": return Success<string>("");
+                default: return BadRequest<string>(_localizer[SharedResoursesKeys.InvaildCode]);
+            }
+        }
+        #endregion
+    }
 }

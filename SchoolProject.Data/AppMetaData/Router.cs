@@ -28,8 +28,25 @@ namespace SchoolProject.Data.AppMetaData
 		{
 			public const string Prefix = Rule + "Department";
 			public const string GetByID = Prefix + "/id";
-		}
-		public static class ApplicationUserRouting
+            public const string Create = Prefix + "/Create";
+			public const string GetAllDepartmentsPaginated = Prefix + "/GetAllDepartmentsPaginated";
+			public const string Update = Prefix + "/Update";
+			public const string Delete = Prefix + "/Delete";
+			public const string GetDepartmentStudentsCount = Prefix + "/GetDepartmentStudentsCount";
+			public const string GetDepartmentWithStudentsStoredProcedure = Prefix + "/GetDepartmentWithStudentsStoredProcedure";
+
+        }
+		public static class InstructorRouting 
+		{
+            public const string Prefix = Rule + "Instructor";
+            public const string GetByID = Prefix + "/id";
+			public const string AddInstructor = Prefix + "/AddInstructor";
+			public const string GetAllInstructors = Prefix + "/GetAllInstructors";
+			public const string UpdateInstructor = Prefix + "/UpdateInstructor";
+			public const string DeleteInstructor = Prefix + "/DeleteInstructor";
+
+        }
+        public static class ApplicationUserRouting
 		{
 			public const string Prefix = Rule + "User";
 			public const string Create = Prefix + "/Create";
@@ -45,8 +62,13 @@ namespace SchoolProject.Data.AppMetaData
 			public const string SignIn = Prefix + "/SignIn";
 			public const string RefreshToken = Prefix + "/RefreshToken";
 			public const string ValidateToken = Prefix + "/ValidateToken";
-		}
-		public static class AuthorizationRouting
+            public const string ConfirmEmail = "/Api/Authentication/ConfirmEmail";
+			public const string SendResetPasswordCode = Prefix + "/SendResetPasswordCode";
+			public const string ConfirmResetPasswordCode = Prefix + "/ConfirmResetPasswordCode";
+			public const string ResetPassword = Prefix + "/ResetPassword";
+
+        }
+        public static class AuthorizationRouting
 		{
 			public const string Prefix = Rule + "Authentication";
 			public const string Create = Prefix + "/Role"+"/Create";
@@ -55,7 +77,19 @@ namespace SchoolProject.Data.AppMetaData
 			public const string GetRoleList = Prefix + "/Role" + "/GetRoleList";
 			public const string GetRoleById = Prefix + "/Role" + "/GetRoleById/{id}";
 			public const string ManageUserRoles = Prefix + "/Role" + "/ManageUserRoles/{Id}";
-            
+            public const string UpdateUserRoles = Prefix + "/Role" + "/UpdateUserRoles";
+			public const string ManageUserClaims = Prefix + "/Claim" + "/ManageUserClaims/{userId}";
+			public const string UpdateUserClaims = Prefix + "/Claim" + "/UpdateUserClaims";
+
+
+
+
+        }
+
+        public static class EmailsRoute
+        {
+            public const string Prefix = Rule + "EmailsRoute";
+            public const string SendEmail = Prefix + "/SendEmail";
         }
     }
 }

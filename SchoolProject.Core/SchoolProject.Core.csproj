@@ -23,8 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Authentication\Commands\Results\" />
-    <Folder Include="Features\Department\Commands\" />
-    <Folder Include="Mapping\Departments\Commands\" />
+    <Folder Include="Features\Email\Query\" />
   </ItemGroup>
 
 </Project>

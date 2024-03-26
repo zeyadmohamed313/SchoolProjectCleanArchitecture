@@ -131,12 +131,13 @@ namespace SchoolProject.Infrustructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DID"));
+
                     b.Property<string>("DNameAr")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("DNameEn")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -144,6 +145,10 @@ namespace SchoolProject.Infrustructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("DID");
+
+                    b.HasIndex("InsManger")
+                        .IsUnique()
+                        .HasFilter("[InsManger] IS NOT NULL");
 
                     b.ToTable("Departments");
                 });
@@ -205,6 +210,9 @@ namespace SchoolProject.Infrustructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -497,9 +505,7 @@ namespace SchoolProject.Infrustructure.Migrations
                 {
                     b.HasOne("SchoolProject.Data.Entites.Instructor", "Instructor")
                         .WithOne("DepartmentManger")
-                        .HasForeignKey("SchoolProject.Data.Entites.Department", "DID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("SchoolProject.Data.Entites.Department", "InsManger");
 
                     b.Navigation("Instructor");
                 });
@@ -561,8 +567,7 @@ namespace SchoolProject.Infrustructure.Migrations
 
                     b.HasOne("SchoolProject.Data.Entites.Instructor", "Supervisor")
                         .WithMany("Instructors")
-                        .HasForeignKey("SupervisorId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("SupervisorId");
 
                     b.Navigation("Department");
 
@@ -573,8 +578,7 @@ namespace SchoolProject.Infrustructure.Migrations
                 {
                     b.HasOne("SchoolProject.Data.Entites.Department", "Department")
                         .WithMany("Students")
-                        .HasForeignKey("DID")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("DID");
 
                     b.Navigation("Department");
                 });

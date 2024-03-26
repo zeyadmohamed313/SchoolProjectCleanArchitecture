@@ -1,5 +1,5 @@
 ﻿using SchoolProject.Data.Entites;
-using SchoolProject.Data.Helper;
+using SchoolProject.Data.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Service.Abstracts
 {
-	public interface IStudentService
+    public interface IStudentService
 	{
 		public Task<List<Student>> GetStudentListAsync();
 		public Task<Student> GetByIdWithIncludeAsync(int id);
