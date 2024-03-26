@@ -39,6 +39,21 @@ namespace SchoolProject.Core.Resourses
 		public const string FaliedToAddRole = "FaliedToAddRole";
 		public const string RoleIsUsed = "RoleIsUsed";
 		public const string UserIsNotFound = "UserIsNotFound";
+		public const string FailedToRemoveOldRoles = "FailedToRemoveOldRoles";
+        public const string FailedToAddNewRoles = "FailedToAddNewRoles";
+        public const string FailedToUpdateUserRoles = "FailedToUpdateUserRoles";
+		public const string FailedToRemoveOldClaims = "FailedToRemoveOldClaims";
+		public const string FailedToAddNewClaims = "FailedToAddNewClaims";
+		public const string FailedToUpdateClaims = "FailedToUpdateClaims";
+		public const string SendEmailFailed = "SendEmailFailed";
+		public const string ErrorWhenConfirmEmail = "ErrorWhenConfirmEmail";
+		public const string ConfirmEmailDone = "ConfirmEmailDone";
+		public const string EmailIsExist = "EmailIsExist";
+        public const string UserNameIsExist = "UserNameIsExist";
+        public const string FaildToAddUser = "FaildToAddUser";
+        public const string TryToRegisterAgain = "TryToRegisterAgain";
+		public const string TryAgainInAnotherTime = "TryAgainInAnotherTime";
+		public const string InvaildCode = "InvaildCode";
 
     }
 }

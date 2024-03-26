@@ -13,11 +13,11 @@ namespace SchoolProject.Infrustructure.Configuration
 	{
 		public void Configure(EntityTypeBuilder<Instructor> builder)
 		{
-           builder
+           /*builder
 			.HasOne(x => x.Supervisor)
 			 .WithMany(x => x.Instructors)
 			  .HasForeignKey(x => x.SupervisorId)
-				.OnDelete(DeleteBehavior.Restrict);
+				.OnDelete(DeleteBehavior.Restrict);*/
 		}
 	}
 }

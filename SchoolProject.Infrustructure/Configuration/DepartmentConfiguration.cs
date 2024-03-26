@@ -13,7 +13,7 @@ namespace SchoolProject.Infrustructure.Configuration
 	{
 		public void Configure(EntityTypeBuilder<Department> builder)
 		{
-			builder.HasKey(d => d.DID);
+			/*builder.HasKey(d => d.DID);
 			builder.Property(d => d.DNameAr).HasMaxLength(500);
 
 			builder.HasMany(d => d.Students)
@@ -25,6 +25,7 @@ namespace SchoolProject.Infrustructure.Configuration
 			.WithOne(ins => ins.DepartmentManger)
 			.HasForeignKey<Department>(d => d.DID)
 			.OnDelete(DeleteBehavior.Restrict);
+			*/
 			// not sure here
 			
 			   /* builder

@@ -12,6 +12,10 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Identity;
 using SchoolProject.Data.Entites.Identity;
 using SchoolProject.Infrustructure.Seeder;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Mvc;
+using SchoolProject.Core.ActionFilters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,7 +72,15 @@ builder.Services.AddCors(options =>
 	  )
 );
 #endregion
+builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+builder.Services.AddTransient<IUrlHelper>(x =>
+{
+    var actionContext = x.GetRequiredService<IActionContextAccessor>().ActionContext;
+    var factory = x.GetRequiredService<IUrlHelperFactory>();
+    return factory.GetUrlHelper(actionContext);
+});
 
+builder.Services.AddTransient<OnlyUserFilter>();
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())// to deal with it as scoped not singleton

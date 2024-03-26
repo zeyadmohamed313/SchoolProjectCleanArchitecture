@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using SchoolProject.Data.Entites;
-using SchoolProject.Data.Helper;
+using SchoolProject.Data.Enums;
 using SchoolProject.Infrustructure.Abstracts;
 using SchoolProject.Infrustructure.UnitOfwork;
 using SchoolProject.Service.Abstracts;
@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Service.Implementations
 {
-	public class StudentService : IStudentService
+    public class StudentService : IStudentService
 	{
 		#region Fields
 		private readonly IUnitOfWork _unitOfWork;

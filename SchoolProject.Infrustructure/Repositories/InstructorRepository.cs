@@ -21,10 +21,14 @@ namespace SchoolProject.Infrustructure.Repositories
 		{
 			_instuctors = context.Set<Instructor>();
 		}
-		#endregion
-		#region Handle Function
+        #endregion
+        #region Handle Function
+        public async Task<List<Instructor>> GetInstructorListAsync()
+        {
+            return await _instuctors.Include(x => x.Department).ToListAsync();
+        }
+		// you should include from here because the next layer doesnot have the department property
+        #endregion
 
-		#endregion
-	
-	}
+    }
 }

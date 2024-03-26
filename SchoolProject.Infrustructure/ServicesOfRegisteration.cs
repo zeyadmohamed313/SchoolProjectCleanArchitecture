@@ -50,9 +50,14 @@ namespace SchoolProject.Infrustructure
 			//JWT Authentication
 			var jwtSettings = new JwtSettings();
 			configuration.GetSection(nameof(jwtSettings)).Bind(jwtSettings);
-			services.AddSingleton(jwtSettings);
+			var emailSettings = new EmailSettings();
+            configuration.GetSection(nameof(emailSettings)).Bind(emailSettings);
 
-			services.AddAuthentication(x =>
+            services.AddSingleton(jwtSettings);
+            services.AddSingleton(emailSettings); // 
+
+
+            services.AddAuthentication(x =>
 			{
 				x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
 				x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -104,7 +109,23 @@ namespace SchoolProject.Infrustructure
 		   });
 			});
 
-			return services;
+            services.AddAuthorization(option =>
+            {
+                option.AddPolicy("Create", policy =>
+                {
+                    policy.RequireClaim("Create", "true");
+                });
+                option.AddPolicy("Delete", policy =>
+                {
+                    policy.RequireClaim("Delete", "true");
+                });
+                option.AddPolicy("Edit", policy =>
+                {
+                    policy.RequireClaim("Edit", "true");
+                });
+            });
+
+            return services;
 
 			
 		}

@@ -120,6 +120,9 @@
   <data name="AlgorithmIsWrong" xml:space="preserve">
     <value>خوارزمية التشفير خاطئة</value>
   </data>
+  <data name="ConfirmEmailDone" xml:space="preserve">
+    <value>تم تاكيد الايميل</value>
+  </data>
   <data name="Created" xml:space="preserve">
     <value>تم الاضافة بنجاح</value>
   </data>
@@ -132,17 +135,47 @@
   <data name="EmailAlreadyExsists" xml:space="preserve">
     <value>هذا الايميل موجود مسبقا </value>
   </data>
+  <data name="EmailIsExist" xml:space="preserve">
+    <value>هذا الايميل مستخدم</value>
+  </data>
   <data name="EmailNotConfirmed" xml:space="preserve">
     <value>  هذا الايميل لم يوثق</value>
   </data>
+  <data name="ErrorWhenConfirmEmail" xml:space="preserve">
+    <value>خطا اثناء تاكيد الايميل</value>
+  </data>
+  <data name="FaildToAddUser" xml:space="preserve">
+    <value>فشل اضافة مستخدم</value>
+  </data>
+  <data name="FailedToAddNewClaims" xml:space="preserve">
+    <value>فشل اضافة صلاحيات استخدام جديدة</value>
+  </data>
+  <data name="FailedToAddNewRoles" xml:space="preserve">
+    <value>فشل اضافة الصلاحيات الجديدة</value>
+  </data>
   <data name="FailedToDeleteUser" xml:space="preserve">
     <value>فشل حذف المستخدم</value>
+  </data>
+  <data name="FailedToRemoveOldClaims" xml:space="preserve">
+    <value>فشل ازالة صلاحيات الاستخدام القديمة</value>
+  </data>
+  <data name="FailedToRemoveOldRoles" xml:space="preserve">
+    <value>فشل مسح الصلاحيات القديمة</value>
+  </data>
+  <data name="FailedToUpdateClaims" xml:space="preserve">
+    <value>فشل تحديث صلاحيات الاستخدام</value>
+  </data>
+  <data name="FailedToUpdateUserRoles" xml:space="preserve">
+    <value>فشل تحديث صلاحيات المستخدم</value>
   </data>
   <data name="FaliedToAddRole" xml:space="preserve">
     <value>فشل اضافة الدور</value>
   </data>
   <data name="FaliedToAddUser" xml:space="preserve">
     <value>فشل اضافة المستخدم</value>
+  </data>
+  <data name="InvaildCode" xml:space="preserve">
+    <value>هذا الكود خاطئ</value>
   </data>
   <data name="IsExist" xml:space="preserve">
     <value>هل هو موجود</value>
@@ -180,11 +213,20 @@
   <data name="RoleIsUsed" xml:space="preserve">
     <value>هذه الصلاحية مستخدمة بالفعل</value>
   </data>
+  <data name="SendEmailFailed" xml:space="preserve">
+    <value>فشل ارسال الايميل</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>تم العملية بنجاح</value>
   </data>
   <data name="TokenIsNotExpired" xml:space="preserve">
     <value>رمز التشفير لما تنتهي صلاحيته</value>
+  </data>
+  <data name="TryAgainInAnotherTime" xml:space="preserve">
+    <value>حدث خطا حاول مجددا في وقت اخر</value>
+  </data>
+  <data name="TryToRegisterAgain" xml:space="preserve">
+    <value>حاول التسجيل مجددا</value>
   </data>
   <data name="UnAuthorized" xml:space="preserve">
     <value>ليس لديك حق الوصول</value>
@@ -203,6 +245,9 @@
   </data>
   <data name="UserNameIsAlreadyExsists" xml:space="preserve">
     <value>هذا الاسم موجود مسبقا </value>
+  </data>
+  <data name="UserNameIsExist" xml:space="preserve">
+    <value>هذا الاسم مستخدم</value>
   </data>
   <data name="UserNameIsNotExist" xml:space="preserve">
     <value>اسم المستخدم هذا ليس موجودا</value>

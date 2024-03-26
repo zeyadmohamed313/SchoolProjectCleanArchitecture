@@ -22,14 +22,14 @@ namespace SchoolProject.Data.Entites
 		[StringLength(500)]
 		public string? DNameAr { get; set; }
 		[StringLength(500)]
-		public string DNameEn { get; set; }
-		public int? InsManger {  get; set; }
+		public string? DNameEn { get; set; }
+		//public int? InsManger {  get; set; }
 		[InverseProperty("Department")]
-		public virtual ICollection<Student> Students { get; set; }
+		public virtual ICollection<Student>? Students { get; set; }
 		[InverseProperty("Department")]
-		public virtual ICollection<DepartmetSubject> DepartmentSubjects { get; set; }
+		public virtual ICollection<DepartmetSubject>? DepartmentSubjects { get; set; }
 		[InverseProperty("Department")]
-		public virtual ICollection<Instructor> Instructors { get; set; }
+		public virtual ICollection<Instructor>? Instructors { get; set; }
 		[ForeignKey("InsManger")]
 		[InverseProperty("DepartmentManger")]
 		public virtual Instructor? Instructor { get; set; }

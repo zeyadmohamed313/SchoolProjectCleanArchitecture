@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using SchoolProject.Data.Entites.Identity;
 using SchoolProject.Data.Helper;
+using SchoolProject.Data.Results;
+using SchoolProject.Infrustructure.Context;
 using SchoolProject.Infrustructure.UnitOfwork;
 using SchoolProject.Service.Abstracts;
 using System;
@@ -18,26 +20,33 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace SchoolProject.Service.Implementations
 {
-	public class AuthenticationServices : IAuthenticationServices
+    public class AuthenticationServices : IAuthenticationServices
 	{
 		#region Feilds
 		private readonly JwtSettings _jwtSettings;
 		//private readonly ConcurrentDictionary<string, RefreshToken> _UserRefreshToken; // map works in concurrent enviroment
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly UserManager<User> _userManager;
+		private readonly ApplicationDbContext _applicationDbContext;
+		private readonly IEmailServices _emailServices;
         #endregion
         #region Constructor
         public AuthenticationServices(JwtSettings jwtSettings,
 			ConcurrentDictionary<string, RefreshToken> UserRefreshToken ,
-			IUnitOfWork unitOfWork, UserManager<User> userManager)
+			IUnitOfWork unitOfWork, UserManager<User> userManager,
+            ApplicationDbContext applicationDbContext,
+			IEmailServices emailServices)
         {
 			_jwtSettings = jwtSettings;   
 			//_UserRefreshToken = UserRefreshToken;
 			_unitOfWork = unitOfWork;
 			_userManager = userManager;
+			_applicationDbContext = applicationDbContext;
+			_emailServices = emailServices;
         }
 		#endregion
 		#region HandleFunctions
@@ -70,9 +79,8 @@ namespace SchoolProject.Service.Implementations
 
 		private async Task<  (JwtSecurityToken,string)> GenerateJwtToken(User user)
 		{
-			var UserRoles = await _userManager.GetRolesAsync(user);
 
-			var claims = GetClaims(user,UserRoles.ToList());
+			var claims =await GetClaims(user);
 			var JwtToken = new JwtSecurityToken(
 				_jwtSettings.Issuer,
 				_jwtSettings.Audience,
@@ -102,9 +110,10 @@ namespace SchoolProject.Service.Implementations
 			RandomNumberGenerate.GetBytes(RandomNumber);
 			return Convert.ToBase64String(RandomNumber);
 		}
-		private List<Claim> GetClaims(User user ,List<string>Roles)
+		private async Task< List<Claim>> GetClaims(User user)
 		{
-			var claims = new List<Claim>()
+            var Roles = await _userManager.GetRolesAsync(user);
+            var claims = new List<Claim>()
 			{
 				new Claim(nameof(UserClaimsModel.UserName),user.UserName),
 				new Claim(nameof(UserClaimsModel.Email),user.Email),
@@ -114,8 +123,10 @@ namespace SchoolProject.Service.Implementations
 			// adding roles
 			foreach(var role in Roles )
 			   claims.Add(new Claim(ClaimTypes.Role,role.ToString()));
+            var userClaims = await _userManager.GetClaimsAsync(user);
+            claims.AddRange(userClaims);
 
-			return claims;
+            return claims;
 		}
 		public async Task<JwtAuthResult> GetRefreshToken(User user, JwtSecurityToken JwtToken,  DateTime? ExpiryDate , string refreshToken)
 		{
@@ -208,6 +219,93 @@ namespace SchoolProject.Service.Implementations
 			var ExpireDate = userRefreshToken.ExpiryDate;
 			return (userId,ExpireDate);
 		}
-		#endregion
-	}
+
+        public async Task<string> ConfirmEmail(int UserId, string Code)
+        {
+            if (UserId == null || Code == null)
+                return "ErrorWhenConfirmEmail";
+            var user = await _userManager.FindByIdAsync(UserId.ToString());
+            var confirmEmail = await _userManager.ConfirmEmailAsync(user, Code);
+            if (!confirmEmail.Succeeded)
+                return "ErrorWhenConfirmEmail";
+            return "Success";
+        }
+
+        public async Task<string> ResetPasswordCode(string Email)
+        {
+            var trans = await _applicationDbContext.Database.BeginTransactionAsync();
+            try
+            {
+                //user
+                var user = await _userManager.FindByEmailAsync(Email);
+                //user not Exist => not found
+                if (user == null)
+                    return "UserNotFound";
+                //Generate Random Number
+
+                //Random generator = new Random();
+                //string randomNumber = generator.Next(0, 1000000).ToString("D6");
+                var chars = "0123456789";
+                var random = new Random();
+                var randomNumber = new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
+
+                //update User In Database Code
+                user.Code = randomNumber;
+                var updateResult = await _userManager.UpdateAsync(user);
+                if (!updateResult.Succeeded)
+                    return "ErrorInUpdateUser";
+                var message = "Code To Reset Passsword : " + user.Code;
+                //Send Code To  Email 
+                await _emailServices.SendEmail(user.Email, message, "Reset Password");
+                await trans.CommitAsync();
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                await trans.RollbackAsync();
+                return "Failed";
+            }
+        }
+
+        public async Task<string> ConfirmResetPassword(string Code, string Email)
+        {
+            //Get User
+            //user
+            var user = await _userManager.FindByEmailAsync(Email);
+            //user not Exist => not found
+            if (user == null)
+                return "UserNotFound";
+            //Decrept Code From Database User Code
+            var userCode = user.Code;
+            //Equal With Code
+            if (userCode == Code) return "Success";
+            return "Failed";
+        }
+
+        public async Task<string> ResetPassword(string Email, string Password)
+        {
+            var trans = await _applicationDbContext.Database.BeginTransactionAsync();
+            try
+            {
+                //Get User
+                var user = await _userManager.FindByEmailAsync(Email);
+                //user not Exist => not found
+                if (user == null)
+                    return "UserNotFound";
+                await _userManager.RemovePasswordAsync(user);
+                if (!await _userManager.HasPasswordAsync(user))
+                {
+                    await _userManager.AddPasswordAsync(user, Password);
+                }
+                await trans.CommitAsync();
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                await trans.RollbackAsync();
+                return "Failed";
+            }
+        }
+        #endregion
+    }
 }

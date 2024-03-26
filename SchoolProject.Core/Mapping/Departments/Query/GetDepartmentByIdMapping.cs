@@ -30,7 +30,7 @@ namespace SchoolProject.Core.Mapping.Departments
 		       .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.StudID))
 			   .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Localize(src.NameAr, src.NameEn)));
 			*/
-			CreateMap<Instructor, InstructorResponse>()
+			CreateMap<Data.Entites.Instructor, InstructorResponse>()
 				 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.InsId))
 				 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Localize(src.ENameAr, src.ENameEn)));
 		}

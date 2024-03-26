@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Bases;
 using SchoolProject.Core.Features.Authentication.Commands.Models;
+using SchoolProject.Core.Features.Authentication.Queries.Models;
 using SchoolProject.Core.Resourses;
 using SchoolProject.Data.Entites.Identity;
-using SchoolProject.Data.Helper;
+using SchoolProject.Data.Results;
 using SchoolProject.Service.Abstracts;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,11 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authentication.Commands.Handler
 {
-	public class AuthenticationCommandHandler : 
+    public class AuthenticationCommandHandler : 
 		ResponseHandler,IRequestHandler<SignInCommand,Response<JwtAuthResult>>,
-		IRequestHandler<RefreshTokenCommand, Response<JwtAuthResult>>
+		IRequestHandler<RefreshTokenCommand, Response<JwtAuthResult>>,
+		IRequestHandler<SendResetPasswordCommand,Response<string>>,
+		IRequestHandler<ResetPasswordCommand,Response<string>>
 
 	{
 		#region Fields
@@ -56,9 +59,10 @@ namespace SchoolProject.Core.Features.Authentication.Commands.Handler
 			//var signInResult = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
 			//if Failed Return Passord is wrong
 			if (!signInResult) return BadRequest<JwtAuthResult>(_localizer[SharedResoursesKeys.PasswordNotCorrect]);
-			
-			//Generate Token
-			var result = await _authenticationServices.GetJWTToken(user);
+            if (!user.EmailConfirmed)
+                return BadRequest<JwtAuthResult>(_localizer[SharedResoursesKeys.EmailNotConfirmed]);
+            //Generate Token
+            var result = await _authenticationServices.GetJWTToken(user);
 			//return Token 
 			return Success(result);
 		}
@@ -83,6 +87,31 @@ namespace SchoolProject.Core.Features.Authentication.Commands.Handler
 			var result = await _authenticationServices.GetRefreshToken(user, jwtToken, ExpireDate, request.RefreshToken);
 			return Success(result);
 		}
-		#endregion
-	}
+		
+        public async Task<Response<string>> Handle(SendResetPasswordCommand request, CancellationToken cancellationToken)
+        {
+            var result = await _authenticationServices.ResetPasswordCode(request.Email);
+            switch (result)
+            {
+                case "UserNotFound": return BadRequest<string>(_localizer[SharedResoursesKeys.UserIsNotFound]);
+                case "ErrorInUpdateUser": return BadRequest<string>(_localizer[SharedResoursesKeys.TryAgainInAnotherTime]);
+                case "Failed": return BadRequest<string>(_localizer[SharedResoursesKeys.TryAgainInAnotherTime]);
+                case "Success": return Success<string>("");
+                default: return BadRequest<string>(_localizer[SharedResoursesKeys.TryAgainInAnotherTime]);
+            }
+        }
+
+        public async Task<Response<string>> Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
+        {
+            var result = await _authenticationServices.ResetPassword(request.Email, request.Password);
+            switch (result)
+            {
+                case "UserNotFound": return BadRequest<string>(_localizer[SharedResoursesKeys.UserIsNotFound]);
+                case "Failed": return BadRequest<string>(_localizer[SharedResoursesKeys.InvaildCode]);
+                case "Success": return Success<string>("");
+                default: return BadRequest<string>(_localizer[SharedResoursesKeys.InvaildCode]);
+            }
+        }
+        #endregion
+    }
 }

@@ -5,7 +5,6 @@ using SchoolProject.Core.Bases;
 using SchoolProject.Core.Features.Students.Queries.Models;
 using SchoolProject.Core.Features.Students.Queries.Results;
 using SchoolProject.Core.Resourses;
-using SchoolProject.Core.Resourses;
 using SchoolProject.Core.Wrapper;
 using SchoolProject.Data.Entites;
 using SchoolProject.Service.Abstracts;
