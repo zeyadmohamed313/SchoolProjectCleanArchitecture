@@ -4,6 +4,7 @@ using SchoolProject.Api.Base;
 using SchoolProject.Core.Features.Department.Commands.Models;
 using SchoolProject.Core.Features.Department.Queries.Models;
 using SchoolProject.Data.AppMetaData;
+using Serilog;
 using Swashbuckle.AspNetCore.Annotations;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
