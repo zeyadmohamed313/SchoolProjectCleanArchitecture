@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Core.ActionFilters;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -81,6 +82,11 @@ builder.Services.AddTransient<IUrlHelper>(x =>
 });
 
 builder.Services.AddTransient<OnlyUserFilter>();
+
+//Serilog Configure
+Log.Logger = new LoggerConfiguration()
+              .ReadFrom.Configuration(builder.Configuration).CreateLogger();
+builder.Services.AddSerilog();
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())// to deal with it as scoped not singleton

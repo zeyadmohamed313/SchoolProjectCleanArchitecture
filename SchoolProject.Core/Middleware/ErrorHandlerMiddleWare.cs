@@ -5,6 +5,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using SchoolProject.Core.Bases;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace SchoolProject.Api.Middleware
 {
@@ -39,10 +40,12 @@ Source: Conversation with Bing, 12/14/2023
 	public class ErrorHandlerMiddleware
 	{
 		private readonly RequestDelegate _next;
+		private readonly ILogger _logger;
 
-		public ErrorHandlerMiddleware(RequestDelegate next)
+		public ErrorHandlerMiddleware(RequestDelegate next , ILogger logger)
 		{
 			_next = next;
+			_logger = logger;
 		}
 
 		public async Task Invoke(HttpContext context)
@@ -56,8 +59,11 @@ Source: Conversation with Bing, 12/14/2023
 				var response = context.Response;
 				response.ContentType = "application/json";
 				var responseModel = new Response<string>() { Succeeded = false, Message = error?.Message };
-				//TODO:: cover all validation errors
-				switch (error)
+				// Logging
+                Log.Error(error, error.Message, context.Request, "");
+
+                //TODO:: cover all validation errors
+                switch (error)
 				{  
 					case UnauthorizedAccessException e:
 						// custom application error
