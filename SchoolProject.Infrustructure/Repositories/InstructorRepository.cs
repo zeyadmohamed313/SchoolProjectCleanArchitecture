@@ -27,7 +27,13 @@ namespace SchoolProject.Infrustructure.Repositories
         {
             return await _instuctors.Include(x => x.Department).ToListAsync();
         }
-		// you should include from here because the next layer doesnot have the department property
+        // you should include from here because the next layer doesnot have the department property
+
+        public async Task<Instructor> GetInstructorWithClassesAsync(int id)
+        {
+            return await _instuctors.Include(c => c.classes).FirstOrDefaultAsync(i => i.InsId == id);
+        }
+
         #endregion
 
     }

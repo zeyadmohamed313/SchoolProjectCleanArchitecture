@@ -18,19 +18,30 @@ namespace SchoolProject.Infrustructure.UnitOfwork
 		public IDepartmentRepository Departments { get; private set; }
 		public IRefreshTokenRepository RefreshToken { get; private set; }
 		public IInstructorRepository Instructors { get; private set; }
+        public IClassRepository Classes { get; private set; }
+		public ISubjectRepository Subjects { get; private set; }
+		public  IDepartmentSubjectRepository DepartmentSubjects { get; private set; }
+        public IStudentSubjectRepository StudentSubjects { get; private set; }
+        public IInstructorSubjectRepository InstructorSubjects { get; private set; }
 
-		public UnitOfWork(ApplicationDbContext context)
+        public UnitOfWork(ApplicationDbContext context)
 		{
 			_context = context;
 			Students = new StudentRepository(_context);
 			Departments = new DepartmentRepository(_context);
 			RefreshToken = new RefreshTokenRepository(_context);
 			Instructors = new InstructorRepository(_context);
-		}
-		// didnot use cause there is async methods 
-		public int Complete()
+            Classes = new ClassRepository(_context);
+			Subjects = new SubjectRepository(_context);
+			DepartmentSubjects = new DepartmentSubjectRepository(_context);
+            StudentSubjects = new StudentSubjectRepository(_context);
+            InstructorSubjects = new InstructorSubjectRepository(_context);
+
+        }
+        // didnot use cause there is async methods 
+        public int Complete()
 		{
-			return _context.SaveChanges();
+			return  _context.SaveChanges();
 		}
 
 		public void Dispose()

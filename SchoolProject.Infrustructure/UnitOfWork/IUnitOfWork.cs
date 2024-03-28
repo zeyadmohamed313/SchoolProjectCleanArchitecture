@@ -15,6 +15,11 @@ namespace SchoolProject.Infrustructure.UnitOfwork
 		IDepartmentRepository Departments { get; }
 		IRefreshTokenRepository RefreshToken { get; }
 		IInstructorRepository Instructors { get; }
+		IClassRepository Classes { get; }
+		ISubjectRepository Subjects { get; }
+		IDepartmentSubjectRepository DepartmentSubjects { get; }
+		IStudentSubjectRepository StudentSubjects { get; }
+		IInstructorSubjectRepository InstructorSubjects { get; }
 		int Complete();
 	}
 }

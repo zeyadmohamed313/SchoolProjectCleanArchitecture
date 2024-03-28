@@ -86,6 +86,7 @@ builder.Services.AddTransient<OnlyUserFilter>();
 //Serilog Configure
 Log.Logger = new LoggerConfiguration()
               .ReadFrom.Configuration(builder.Configuration).CreateLogger();
+
 builder.Services.AddSerilog();
 
 var app = builder.Build();

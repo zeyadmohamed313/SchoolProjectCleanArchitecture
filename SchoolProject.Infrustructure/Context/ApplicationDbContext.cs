@@ -62,6 +62,7 @@ namespace SchoolProject.Infrustructure.Context
 		public DbSet<Subjects>Subjects { get; set; }
 		public DbSet<DepartmetSubject> departmetSubjects { get; set; }
 		public DbSet<StudentSubject> StudentSubjects { get; set; }
+		public DbSet<Class> classes {  get; set; }
 
         #region Views
         public DbSet<ViewDepartment> ViewDepartment { get; set; }

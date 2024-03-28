@@ -15,6 +15,7 @@ namespace SchoolProject.Data.Entites
 		{
 			Instructors = new HashSet<Instructor>();
 			Ins_Subjects = new HashSet<Ins_Subject>();
+			classes = new List<Class>();
 		}
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -47,6 +48,7 @@ namespace SchoolProject.Data.Entites
 		// Explict Joining
 		[InverseProperty("instructor")]
 		public virtual ICollection<Ins_Subject> Ins_Subjects { get; set; }
+		public List<Class> classes { get; set; }	
 
 	}
 }

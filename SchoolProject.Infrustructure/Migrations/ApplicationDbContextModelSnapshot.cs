@@ -22,6 +22,36 @@ namespace SchoolProject.Infrustructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ClassInstructor", b =>
+                {
+                    b.Property<int>("InstructorsInsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("classesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("InstructorsInsId", "classesId");
+
+                    b.HasIndex("classesId");
+
+                    b.ToTable("ClassInstructor");
+                });
+
+            modelBuilder.Entity("ClassStudent", b =>
+                {
+                    b.Property<int>("EnrolledClassesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentsStudID")
+                        .HasColumnType("int");
+
+                    b.HasKey("EnrolledClassesId", "StudentsStudID");
+
+                    b.HasIndex("StudentsStudID");
+
+                    b.ToTable("ClassStudent");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -123,6 +153,29 @@ namespace SchoolProject.Infrustructure.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("SchoolProject.Data.Entites.Class", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AvailablePlaces")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("classes");
                 });
 
             modelBuilder.Entity("SchoolProject.Data.Entites.Department", b =>
@@ -448,6 +501,79 @@ namespace SchoolProject.Infrustructure.Migrations
                     b.HasKey("SubID");
 
                     b.ToTable("Subjects");
+                });
+
+            modelBuilder.Entity("SchoolProject.Data.Entites.Views.ViewDepartment", b =>
+                {
+                    b.Property<int>("DID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DNameAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DNameEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudentCount")
+                        .HasColumnType("int");
+
+                    b.ToTable("ViewDepartment");
+                });
+
+            modelBuilder.Entity("SchoolProject.Data.Results.StoredProceduresResult.GetDepartmentWithStudentsResult", b =>
+                {
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DNameEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudID")
+                        .HasColumnType("int");
+
+                    b.ToTable("GetDepartmentWithStudentsResult");
+                });
+
+            modelBuilder.Entity("ClassInstructor", b =>
+                {
+                    b.HasOne("SchoolProject.Data.Entites.Instructor", null)
+                        .WithMany()
+                        .HasForeignKey("InstructorsInsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolProject.Data.Entites.Class", null)
+                        .WithMany()
+                        .HasForeignKey("classesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ClassStudent", b =>
+                {
+                    b.HasOne("SchoolProject.Data.Entites.Class", null)
+                        .WithMany()
+                        .HasForeignKey("EnrolledClassesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolProject.Data.Entites.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentsStudID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

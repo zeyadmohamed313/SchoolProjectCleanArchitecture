@@ -21,10 +21,24 @@ namespace SchoolProject.Infrustructure.Repositories
 		{
 			_subject = context.Set<Subjects>();
 		}
-		#endregion
-		#region Handle Function
+        #endregion
+        #region Handle Function
+        public async Task<Subjects>? GetByIdWithInstructors(int Id)
+        {
+            return await _dbContext.Subjects
+                .Include(e => e.Ins_Subjects)
+                .ThenInclude(i=>i.instructor)
+                .FirstOrDefaultAsync(c => c.SubID == Id);
+        }
 
-		#endregion
-	
-	}
+        public async Task<Subjects>? GetByIdWithStudents(int Id)
+        {
+            return await _dbContext.Subjects
+                .Include(e => e.StudentsSubjects)
+                .ThenInclude(s=>s.Student)
+                .FirstOrDefaultAsync(c => c.SubID == Id);
+        }
+        #endregion
+
+    }
 }

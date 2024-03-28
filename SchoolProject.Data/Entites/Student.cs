@@ -14,6 +14,7 @@ namespace SchoolProject.Data.Entites
 		public Student()
 		{
 			StudentSubjects = new HashSet<StudentSubject>();
+			EnrolledClasses = new List<Class>();
 		}
 
 		[Key]
@@ -34,5 +35,6 @@ namespace SchoolProject.Data.Entites
 		public virtual Department? Department { get; set; }
 		[InverseProperty("Student")]
 		public virtual ICollection<StudentSubject> StudentSubjects {  get; set; }
+		public List<Class> EnrolledClasses {  get; set; }
 	}
 }

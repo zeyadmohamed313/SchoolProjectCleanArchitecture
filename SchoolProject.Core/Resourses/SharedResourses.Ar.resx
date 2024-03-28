@@ -120,6 +120,15 @@
   <data name="AlgorithmIsWrong" xml:space="preserve">
     <value>خوارزمية التشفير خاطئة</value>
   </data>
+  <data name="AlreadyExsists" xml:space="preserve">
+    <value>هذا الشخص موجود بالفعل</value>
+  </data>
+  <data name="AlreadyNotExsists" xml:space="preserve">
+    <value>هذا الشخص ليس موجودا بالفعل</value>
+  </data>
+  <data name="ClassNotFound" xml:space="preserve">
+    <value>هذا الفصل ليس موجودا</value>
+  </data>
   <data name="ConfirmEmailDone" xml:space="preserve">
     <value>تم تاكيد الايميل</value>
   </data>
@@ -174,6 +183,9 @@
   <data name="FaliedToAddUser" xml:space="preserve">
     <value>فشل اضافة المستخدم</value>
   </data>
+  <data name="InstructorNotFound" xml:space="preserve">
+    <value>هذا المدرس ليس موجودا</value>
+  </data>
   <data name="InvaildCode" xml:space="preserve">
     <value>هذا الكود خاطئ</value>
   </data>
@@ -215,6 +227,9 @@
   </data>
   <data name="SendEmailFailed" xml:space="preserve">
     <value>فشل ارسال الايميل</value>
+  </data>
+  <data name="StudentNotFound" xml:space="preserve">
+    <value>هذا الطالب غير موجود</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>تم العملية بنجاح</value>
