@@ -40,12 +40,10 @@ Source: Conversation with Bing, 12/14/2023
 	public class ErrorHandlerMiddleware
 	{
 		private readonly RequestDelegate _next;
-		private readonly ILogger _logger;
 
-		public ErrorHandlerMiddleware(RequestDelegate next , ILogger logger)
+		public ErrorHandlerMiddleware(RequestDelegate next)
 		{
 			_next = next;
-			_logger = logger;
 		}
 
 		public async Task Invoke(HttpContext context)

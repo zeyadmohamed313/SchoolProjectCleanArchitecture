@@ -54,6 +54,12 @@ namespace SchoolProject.Core.Resourses
         public const string TryToRegisterAgain = "TryToRegisterAgain";
 		public const string TryAgainInAnotherTime = "TryAgainInAnotherTime";
 		public const string InvaildCode = "InvaildCode";
+		public const string StudentNotFound = "StudentNotFound";
+        public const string InstructorNotFound = "InstructorNotFound";
+		public const string AlreadyExsists = "AlreadyExsists";
+        public const string AlreadyNotExsists = "AlreadyNotExsists";
+        public const string ClassNotFound = "ClassNotFound";
+
 
     }
 }

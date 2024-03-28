@@ -27,7 +27,20 @@ namespace SchoolProject.Infrustructure.Repositories
 		public async Task<List<Student>> GetStudentListAsync()
 		{
 			return await _students.Include(x=>x.Department).ToListAsync();
+
 		}
-		#endregion
-	}
+        public async Task<Student> GetStudentWithClasses(int StudId)
+		{
+			var student = await _students.Include(c => c.EnrolledClasses).FirstOrDefaultAsync(s=>s.StudID==StudId);
+			return student;
+		}
+        public async Task<ICollection<StudentSubject>> GetStudentWithSubjects(int StudId)
+        {
+            var student = await  _students.Include(c => c.StudentSubjects).FirstOrDefaultAsync(s => s.StudID == StudId);
+			var Sub = student.StudentSubjects;
+            return Sub;
+        }
+
+        #endregion
+    }
 }

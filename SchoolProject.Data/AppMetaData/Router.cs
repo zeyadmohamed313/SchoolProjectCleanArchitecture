@@ -24,7 +24,43 @@ namespace SchoolProject.Data.AppMetaData
 
 
 		}
-		public static class DepartmentRouting
+		public static class ClassRouting
+		{
+			public const string Prefix = Rule + "Class";
+            public const string List = Prefix + "/List";
+            public const string GetByID = Prefix + "/GetById";
+            public const string GetAvailableSpaces = Prefix + "/GetAvailableSpaces";
+			public const string GetClassesForStudent = Prefix + "/GetClassesForStudent";
+            public const string GetClassesForInstructor = Prefix + "/GetClassesForInstructor";
+			public const string AddClass = Prefix + "/AddClass";
+            public const string DeleteClass = Prefix + "/DeleteClass";
+			public const string AddStudentToClass = Prefix + "/AddStudentToClass";
+            public const string RemoveStudentFromClass = Prefix + "/RemoveStudentFromClass";
+            public const string AddInstructorToClass = Prefix + "/AddInstructorToClass";
+            public const string RemoveInstructorFromClass = Prefix + "/RemoveInstructorFromClass";
+
+
+
+        }
+        public static class SubjectRouting
+        {
+            public const string Prefix = Rule + "Subject";
+            public const string List = Prefix + "/List";
+            public const string GetByID = Prefix + "/GetById";
+            public const string GetAvailableSpaces = Prefix + "/GetAvailableSpaces";
+            public const string GetSubjectsForStudent = Prefix + "/GetSubjectsForStudent";
+            public const string GetSubjectsForInstructor = Prefix + "/GetSubjectsForInstructor";
+            public const string AddSubject = Prefix + "/AddSubject";
+            public const string DeleteSubject = Prefix + "/DeleteSubject";
+            public const string AddSubjectToStudent = Prefix + "/AddSubjectToStuent";
+            public const string RemoveSubjectFromStudent = Prefix + "/RemoveSubjectFromStudent";
+            public const string AddSubjectToInstructor = Prefix + "/AddSubjectToInstructor";
+            public const string RemoveSubjectFromInstructor = Prefix + "/RemoveSubjectFromInstructor";
+
+
+
+        }
+        public static class DepartmentRouting
 		{
 			public const string Prefix = Rule + "Department";
 			public const string GetByID = Prefix + "/id";

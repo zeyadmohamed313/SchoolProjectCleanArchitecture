@@ -120,6 +120,15 @@
   <data name="AlgorithmIsWrong" xml:space="preserve">
     <value>AlgorithmIsWrong</value>
   </data>
+  <data name="AlreadyExsists" xml:space="preserve">
+    <value>AlreadyExsists</value>
+  </data>
+  <data name="AlreadyNotExsists" xml:space="preserve">
+    <value>AlreadyNotExsists</value>
+  </data>
+  <data name="ClassNotFound" xml:space="preserve">
+    <value>ClassNotFound</value>
+  </data>
   <data name="ConfirmEmailDone" xml:space="preserve">
     <value>ConfirmEmailDone</value>
   </data>
@@ -174,6 +183,9 @@
   <data name="FaliedToAddUser" xml:space="preserve">
     <value>FaliedToAddUser</value>
   </data>
+  <data name="InstructorNotFound" xml:space="preserve">
+    <value>InstructorNotFound</value>
+  </data>
   <data name="InvaildCode" xml:space="preserve">
     <value>InvaildCode</value>
   </data>
@@ -212,6 +224,9 @@
   </data>
   <data name="SendEmailFailed" xml:space="preserve">
     <value>SendEmailFailed</value>
+  </data>
+  <data name="StudentNotFound" xml:space="preserve">
+    <value>StudentNotFound</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>Operation Successfully</value>
