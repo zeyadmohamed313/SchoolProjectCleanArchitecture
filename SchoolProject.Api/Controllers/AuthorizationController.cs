@@ -15,13 +15,17 @@ namespace SchoolProject.Api.Controllers
 	public class AuthorizationController : AppControllerBase
 	{
 		[HttpPost(Router.AuthorizationRouting.Create)]
-		public async Task<IActionResult> Create([FromForm] AddRoleCommand command)
+        [SwaggerOperation(Summary = "انشاء صلاحية جديدة", OperationId = "CreateRole")]
+
+        public async Task<IActionResult> Create([FromForm] AddRoleCommand command)
 		{
 			var response = await Mediator.Send(command);
 			return NewResult(response);
 		}
 
         [HttpPost(Router.AuthorizationRouting.Edit)]
+        [SwaggerOperation(Summary = "تعديل صلاحية ", OperationId = "EditRole")]
+
         public async Task<IActionResult> Edit([FromForm] EditRoleCommand command)
         {
             var response = await Mediator.Send(command);
@@ -29,13 +33,17 @@ namespace SchoolProject.Api.Controllers
         }
 
         [HttpDelete(Router.AuthorizationRouting.Delete)]
+        [SwaggerOperation(Summary = "حذف صلاحية ", OperationId = "DeleteRole")]
+
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var response = await Mediator.Send(new DeleteRoleCommand(id));
             return NewResult(response);
         }
 
-        [HttpDelete(Router.AuthorizationRouting.GetRoleList)]
+        [HttpGet(Router.AuthorizationRouting.GetRoleList)]
+        [SwaggerOperation(Summary = "عرض قائمة الصلاحيات ", OperationId = "GetRoleList")]
+
         public async Task<IActionResult> GetRoleList()
         {
             var response = await Mediator.Send(new GetRolesListQuery());
