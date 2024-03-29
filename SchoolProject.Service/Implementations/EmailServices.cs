@@ -41,7 +41,7 @@ namespace SchoolProject.Service.Implementations
                     {
                         Body = bodybuilder.ToMessageBody()
                     };
-                    message.From.Add(new MailboxAddress("Future Team", _emailSettings.FromEmail));
+                    message.From.Add(new MailboxAddress("School Team", _emailSettings.FromEmail));
                     message.To.Add(new MailboxAddress("testing", email));
                     message.Subject = reason == null ? "No Submitted" : reason;
                     await client.SendAsync(message);

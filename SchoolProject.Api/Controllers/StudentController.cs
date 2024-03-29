@@ -13,13 +13,13 @@ using SchoolProject.Infrustructure.Context;
 namespace SchoolProject.Api.Controllers
 {
 	[ApiController]
-	//[Authorize(Roles ="Admin")]
+	[Authorize(Roles ="Admin")]
 	public class StudentController : AppControllerBase
 	{
 		
 		[HttpGet(Router.StudentRouting.List)]
 		// to access it , you will need the admin and the user claims 
-		//[Authorize(Roles ="User")] this will not work with changed token here so i must use filter
+		[Authorize(Roles ="User")] //this will not work with changed token here so i must use filter
 		[ServiceFilter(typeof(OnlyUserFilter))]
 		public async Task<IActionResult>GetStudentList()
 		{
@@ -46,7 +46,7 @@ namespace SchoolProject.Api.Controllers
 			var response = await Mediator.Send(command);
 			return NewResult(response);
 		}
-        [Authorize(Policy = "Update")]
+        [Authorize(Policy = "Edit")]
         [HttpPut(Router.StudentRouting.Edit)]
 		public async Task<IActionResult> Edit([FromBody] EditStudentCommand command)
 		{
